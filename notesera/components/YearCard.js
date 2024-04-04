@@ -1,8 +1,10 @@
 import { Text, TouchableWithoutFeedback, View,Image,StyleSheet,Platform } from "react-native"
 import * as Icon from 'react-native-feather';
 import { themeColors } from "../themes";
-const YearCard=({year ,image})=>{
-return(<TouchableWithoutFeedback>
+import { useNavigation } from "@react-navigation/native";
+const YearCard=({year ,image, YearRelatedData})=>{
+    const navigate = useNavigation()
+return(<TouchableWithoutFeedback onPress={()=> navigate.navigate("CollegeYear",{...YearRelatedData})}>
     <View className="mr-6 bg-white rounded-3xl shadow-xl" style={style.card} >
         <Image className='h-36 w-64 rounded-t-3xl' source={{uri:image}}/>
         <View className="px-3 pb-4 space-y-2">

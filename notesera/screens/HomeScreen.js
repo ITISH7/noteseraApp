@@ -14,7 +14,10 @@ import { themeColors } from "../themes";
 import Category from "../components/Category";
 import image from "../assets/Images/back2.jpg"
 import FeaturedCollege from "../components/FeaturedCollege";
+import { useNavigation } from "@react-navigation/native";
+import { allcollegeData } from "../data/Data";
 const HomeScreen = () => {
+  const navigate = useNavigation()
   return (
     <SafeAreaView style={style.container} className="bg-white">
       <StatusBar />
@@ -38,21 +41,14 @@ const HomeScreen = () => {
         paddingBottom:20
       }}>
         <Category/>
-        <FeaturedCollege
-        title="Medicaps"
-        description="Medicaps College notes  for students learning in Medicaps University"
-        image="https://res.cloudinary.com/dejlssoxx/image/upload/v1711941103/medicapsfrontimage_ohdpag.jpg"
-        />
-        <FeaturedCollege
-        title="Acropolis"
-        description="Acropolis College notes  for students learning in Acropolis Institute "
-        image="https://res.cloudinary.com/dejlssoxx/image/upload/v1711941705/acropolisinstitute_qrsxay.jpg"
-        />
-        <FeaturedCollege
-        title="IPS"
-        description="IPS College notes  for students learning in IPS college"
-        image='https://res.cloudinary.com/dejlssoxx/image/upload/v1711941705/ipsindore_pnplg0.jpg'
-        />
+        {allcollegeData.map(Collegedata=>{
+          return(<FeaturedCollege
+            title={Collegedata.collegeName}
+            description={Collegedata.collegeDescription}
+            collegeRelatedData ={Collegedata}/>
+            )
+        })}
+        
       </ScrollView>
     </SafeAreaView>
 
